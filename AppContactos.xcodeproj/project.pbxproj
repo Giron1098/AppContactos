@@ -14,6 +14,7 @@
 		0B84640E272A02F300ECFC37 /* AppContactos.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0B84640C272A02F300ECFC37 /* AppContactos.xcdatamodeld */; };
 		0B846410272A032E00ECFC37 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0B84640F272A032E00ECFC37 /* Assets.xcassets */; };
 		0B846413272A032E00ECFC37 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B846411272A032E00ECFC37 /* LaunchScreen.storyboard */; };
+		28FF8AF027323302001EC684 /* EditarContactoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FF8AEF27323302001EC684 /* EditarContactoViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		0B84640F272A032E00ECFC37 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0B846412272A032E00ECFC37 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0B846414272A032E00ECFC37 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		28FF8AEF27323302001EC684 /* EditarContactoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditarContactoViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 				0B846411272A032E00ECFC37 /* LaunchScreen.storyboard */,
 				0B846414272A032E00ECFC37 /* Info.plist */,
 				0B84640C272A02F300ECFC37 /* AppContactos.xcdatamodeld */,
+				28FF8AEF27323302001EC684 /* EditarContactoViewController.swift */,
 			);
 			path = AppContactos;
 			sourceTree = "<group>";
@@ -142,6 +145,7 @@
 			files = (
 				0B84640E272A02F300ECFC37 /* AppContactos.xcdatamodeld in Sources */,
 				0B846408272A02F200ECFC37 /* ViewController.swift in Sources */,
+				28FF8AF027323302001EC684 /* EditarContactoViewController.swift in Sources */,
 				0B846404272A02F200ECFC37 /* AppDelegate.swift in Sources */,
 				0B846406272A02F200ECFC37 /* SceneDelegate.swift in Sources */,
 			);
