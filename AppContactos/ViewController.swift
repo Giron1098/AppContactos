@@ -6,10 +6,17 @@
 //
 
 import UIKit
+import CoreData
 
 class ViewController: UIViewController {
 
     @IBOutlet weak var TBL_Contactos: UITableView!
+    
+    //MARK:- Conexión a la BD
+    let contexto = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
+    //MARK:- Arreglo de contactos
+    var contactos = [Contacto]()
     
     //VARIABLES PARA GUARDAR LA INFORMACIÓN
     var nombre:String?
@@ -18,6 +25,9 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //Mandamos llamar el método que creamos para leer la información de la BD
+        readData()
         
         TBL_Contactos.delegate = self
         TBL_Contactos.dataSource = self
@@ -39,6 +49,7 @@ class ViewController: UIViewController {
         
         alerta.addTextField { (telefono_contacto) in
             telefono_contacto.placeholder = "Teléfono"
+            telefono_contacto.keyboardType = .numberPad
         }
         
         alerta.addTextField { (direccion_contacto) in
@@ -46,7 +57,7 @@ class ViewController: UIViewController {
         }
         
         let accionAceptar = UIAlertAction(title: "Aceptar", style: .default) { (_) in
-            print("Contacto Agregado")
+            //print("Contacto Agregado")
             
             guard let texto_nombre = alerta.textFields?.first?.text else { return }
             
@@ -54,9 +65,25 @@ class ViewController: UIViewController {
             
             guard let texto_direccion = alerta.textFields?[2].text else { return }
             
+            //MARK:- Crear nuevo contacto
+            
+            let nuevoContacto = Contacto(context: self.contexto)
+            
+            //Asignar los parámetros
+            nuevoContacto.nombre = "\(texto_nombre)"
+            nuevoContacto.telefono = "\(texto_telefono)"
+            nuevoContacto.direccion = "\(texto_direccion)"
+            
+            self.contactos.append(nuevoContacto)
+            
+            //Guardar contacto en la BD
+            self.guardarContacto()
+            
             print("\(texto_nombre)")
             print("\(texto_telefono)")
             print("\(texto_direccion)")
+            
+            self.TBL_Contactos.reloadData()
         }
         
         let accionCancelar = UIAlertAction(title: "Cancelar", style: .destructive, handler: nil)
@@ -67,13 +94,41 @@ class ViewController: UIViewController {
         present(alerta, animated:true)
     }
     
+    //MARK:- Método de Guardar contacto
+    
+    func guardarContacto()
+    {
+        do {
+            try contexto.save()
+            print("Contacto guardado exitosamente")
+            
+        } catch let error as NSError {
+            print("Error al guardar contacto: \(error.localizedDescription)")
+            
+        }
+    }
+    
+    //MARK:- Método para Leer la información de la BD
+    
+    func readData()
+    {
+        let fetchRequest : NSFetchRequest <Contacto> = Contacto.fetchRequest()
+        
+        do{
+            contactos = try contexto.fetch(fetchRequest)
+        } catch let error as NSError {
+            print("Error al cargar la información: \(error.localizedDescription)")
+            
+        }
+    }
+    
 }
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource
 {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return contactos.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -82,9 +137,9 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource
         
         let celda = TBL_Contactos.dequeueReusableCell(withIdentifier: "celda", for: indexPath) as! ContactoCell
         
-        celda.LBL_Nombre_Contacto.text = "Ricardo Giron Colorado"
-        celda.LBL_Telefono_Contacto.text = "4432207350"
-        celda.LBL_Direccion_Contacto.text = "Allende 2-B"
+        celda.LBL_Nombre_Contacto.text = contactos[indexPath.row].nombre
+        celda.LBL_Telefono_Contacto.text = contactos[indexPath.row].telefono
+        celda.LBL_Direccion_Contacto.text = contactos[indexPath.row].direccion
         celda.IV_Foto_Contacto.image = UIImage(named: "login")
         
         return celda
