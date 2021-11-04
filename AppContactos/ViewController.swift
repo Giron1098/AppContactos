@@ -21,6 +21,10 @@ class ViewController: UIViewController {
         
         TBL_Contactos.delegate = self
         TBL_Contactos.dataSource = self
+        
+        //Registramos la celda personalizada que creamos
+        
+        TBL_Contactos.register(UINib(nibName: "ContactoCell", bundle: nil), forCellReuseIdentifier: "celda")
     }
     
     @IBAction func BTN_AgregarContacto(_ sender: UIBarButtonItem) {
@@ -69,13 +73,19 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource
 {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return 5
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let celda = TBL_Contactos.dequeueReusableCell(withIdentifier: "celda", for: indexPath)
         
-        celda.textLabel?.text = "Hola"
+        //Casteamos la celda que creamos
+        
+        let celda = TBL_Contactos.dequeueReusableCell(withIdentifier: "celda", for: indexPath) as! ContactoCell
+        
+        celda.LBL_Nombre_Contacto.text = "Ricardo Giron Colorado"
+        celda.LBL_Telefono_Contacto.text = "4432207350"
+        celda.LBL_Direccion_Contacto.text = "Allende 2-B"
+        celda.IV_Foto_Contacto.image = UIImage(named: "login")
         
         return celda
     }

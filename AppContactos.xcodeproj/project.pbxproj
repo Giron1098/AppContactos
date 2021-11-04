@@ -15,6 +15,8 @@
 		0B846410272A032E00ECFC37 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0B84640F272A032E00ECFC37 /* Assets.xcassets */; };
 		0B846413272A032E00ECFC37 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B846411272A032E00ECFC37 /* LaunchScreen.storyboard */; };
 		28FF8AF027323302001EC684 /* EditarContactoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FF8AEF27323302001EC684 /* EditarContactoViewController.swift */; };
+		28FF8AF427349611001EC684 /* ContactoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FF8AF227349611001EC684 /* ContactoCell.swift */; };
+		28FF8AF527349611001EC684 /* ContactoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28FF8AF327349611001EC684 /* ContactoCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		0B846412272A032E00ECFC37 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0B846414272A032E00ECFC37 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		28FF8AEF27323302001EC684 /* EditarContactoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditarContactoViewController.swift; sourceTree = "<group>"; };
+		28FF8AF227349611001EC684 /* ContactoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactoCell.swift; sourceTree = "<group>"; };
+		28FF8AF327349611001EC684 /* ContactoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContactoCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +73,8 @@
 				0B846414272A032E00ECFC37 /* Info.plist */,
 				0B84640C272A02F300ECFC37 /* AppContactos.xcdatamodeld */,
 				28FF8AEF27323302001EC684 /* EditarContactoViewController.swift */,
+				28FF8AF227349611001EC684 /* ContactoCell.swift */,
+				28FF8AF327349611001EC684 /* ContactoCell.xib */,
 			);
 			path = AppContactos;
 			sourceTree = "<group>";
@@ -130,6 +136,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28FF8AF527349611001EC684 /* ContactoCell.xib in Resources */,
 				0B846413272A032E00ECFC37 /* LaunchScreen.storyboard in Resources */,
 				0B846410272A032E00ECFC37 /* Assets.xcassets in Resources */,
 				0B84640B272A02F200ECFC37 /* Main.storyboard in Resources */,
@@ -147,6 +154,7 @@
 				0B846408272A02F200ECFC37 /* ViewController.swift in Sources */,
 				28FF8AF027323302001EC684 /* EditarContactoViewController.swift in Sources */,
 				0B846404272A02F200ECFC37 /* AppDelegate.swift in Sources */,
+				28FF8AF427349611001EC684 /* ContactoCell.swift in Sources */,
 				0B846406272A02F200ECFC37 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
