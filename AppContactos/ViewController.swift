@@ -23,6 +23,7 @@ class ViewController: UIViewController {
     var telefono_edit:String?
     var direccion_edit:String?
     var posicion_elemento_edit:Int?
+    var img_data_edit:Data?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,6 +72,10 @@ class ViewController: UIViewController {
             
             guard let texto_direccion = alerta.textFields?[2].text else { return }
             
+            //SE CREA UN OBJETO CON UNA IMAGEN TEMPORAL PARA PODER GUARDAR EL CONTACTO
+            
+            let temporal_img = UIImageView(image: #imageLiteral(resourceName: "login"))
+            
             //MARK:- Crear nuevo contacto
             
             let nuevoContacto = Contacto(context: self.contexto)
@@ -79,6 +84,9 @@ class ViewController: UIViewController {
             nuevoContacto.nombre = "\(texto_nombre)"
             nuevoContacto.telefono = "\(texto_telefono)"
             nuevoContacto.direccion = "\(texto_direccion)"
+            
+            //SE ASIGNA NUESTRA IMAGEN TEMPORAL PARA CREAR EL CONTACTO
+            nuevoContacto.imagen = temporal_img.image?.pngData()
             
             self.contactos.append(nuevoContacto)
             
@@ -165,7 +173,12 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource
         celda.LBL_Nombre_Contacto.text = contactos[indexPath.row].nombre
         celda.LBL_Telefono_Contacto.text = contactos[indexPath.row].telefono
         celda.LBL_Direccion_Contacto.text = contactos[indexPath.row].direccion
-        celda.IV_Foto_Contacto.image = UIImage(named: "login")
+        
+        if let data_img = contactos[indexPath.row].imagen
+        {
+            celda.IV_Foto_Contacto.image = UIImage(data:data_img)
+        }
+        
         
         return celda
     }
@@ -182,6 +195,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource
         telefono_edit = contactos[indexPath.row].telefono
         direccion_edit = contactos[indexPath.row].direccion
         posicion_elemento_edit = indexPath.row
+        img_data_edit = contactos[indexPath.row].imagen
         
         performSegue(withIdentifier: "editarContacto", sender: nil)
     }
@@ -195,6 +209,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource
             objEditar.telefono_recibido = telefono_edit
             objEditar.direccion_recibida = direccion_edit
             objEditar.posicion_recibida = posicion_elemento_edit
+            objEditar.img_data_recibida = img_data_edit
         }
     }
     

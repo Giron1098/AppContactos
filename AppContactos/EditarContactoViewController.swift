@@ -27,6 +27,7 @@ class EditarContactoViewController: UIViewController, UIImagePickerControllerDel
     var telefono_recibido:String?
     var direccion_recibida:String?
     var posicion_recibida:Int?
+    var img_data_recibida:Data?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +38,11 @@ class EditarContactoViewController: UIViewController, UIImagePickerControllerDel
         TF_Nombre.text = nombre_recibido
         TF_Telefono.text = telefono_recibido
         TF_Direccion.text = direccion_recibida
+        
+        if let data_img = img_data_recibida
+        {
+            IV_Imagen_Perfil.image = UIImage(data: data_img)
+        }
         
         //MARK:- AGREGAR GESTURA A LA IMAGEN
         let gesturaRecognizer = UITapGestureRecognizer(target: self, action: #selector(clickImagen))
@@ -82,7 +88,7 @@ class EditarContactoViewController: UIViewController, UIImagePickerControllerDel
                 contactos[pos].setValue(TF_Nombre.text, forKey: "nombre")
                 contactos[pos].setValue(TF_Telefono.text, forKey: "telefono")
                 contactos[pos].setValue(TF_Direccion.text, forKey: "direccion")
-                //contactos[pos].setValue(IV_Imagen_Perfil.image?.pngData(), forKey: "image")
+                contactos[pos].setValue(IV_Imagen_Perfil.image?.pngData(), forKey: "imagen")
             }
             
             try self.contexto.save()

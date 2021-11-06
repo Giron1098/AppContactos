@@ -2,10 +2,11 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="19H524" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Contacto" representedClassName="Contacto" syncable="YES" codeGenerationType="class">
         <attribute name="direccion" optional="YES" attributeType="String"/>
+        <attribute name="imagen" optional="YES" attributeType="Binary"/>
         <attribute name="nombre" optional="YES" attributeType="String"/>
         <attribute name="telefono" optional="YES" attributeType="String"/>
     </entity>
     <elements>
-        <element name="Contacto" positionX="-63" positionY="-18" width="128" height="88"/>
+        <element name="Contacto" positionX="-63" positionY="-18" width="128" height="103"/>
     </elements>
 </model>
