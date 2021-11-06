@@ -131,6 +131,20 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource
         return contactos.count
     }
     
+    //MARK:- Borrar contacto
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete
+        {
+            //print(contactos[indexPath.row])
+            contexto.delete(contactos[indexPath.row])
+            contactos.remove(at: indexPath.row)
+            
+            guardarContacto()
+        }
+        TBL_Contactos.reloadData()
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         //Casteamos la celda que creamos
