@@ -18,10 +18,11 @@ class ViewController: UIViewController {
     //MARK:- Arreglo de contactos
     var contactos = [Contacto]()
     
-    //VARIABLES PARA GUARDAR LA INFORMACIÓN
-    var nombre:String?
-    var telefono:String?
-    var direccion:String?
+    //VARIABLES PARA GUARDAR LA INFORMACIÓN A EDITAR
+    var nombre_edit:String?
+    var telefono_edit:String?
+    var direccion_edit:String?
+    var posicion_elemento_edit:Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +36,11 @@ class ViewController: UIViewController {
         //Registramos la celda personalizada que creamos
         
         TBL_Contactos.register(UINib(nibName: "ContactoCell", bundle: nil), forCellReuseIdentifier: "celda")
+    }
+    
+    //REFRESCAR LA TABLA DESPUES DE HACER ALGÚN CAMBIO A UN ELEMENTO
+    override func viewWillAppear(_ animated: Bool) {
+        TBL_Contactos.reloadData()
     }
     
     @IBAction func BTN_AgregarContacto(_ sender: UIBarButtonItem) {
@@ -122,6 +128,11 @@ class ViewController: UIViewController {
         }
     }
     
+    //OCULTAR EL TECLADO
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
 }
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource
@@ -164,10 +175,13 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         //ANIMACIÓN DE SELECCIÓN DE CELDA
-        
         TBL_Contactos.deselectRow(at: indexPath, animated: true)
         
-        
+        //SACAR LA INFORMACIÓN A EDITAR
+        nombre_edit = contactos[indexPath.row].nombre
+        telefono_edit = contactos[indexPath.row].telefono
+        direccion_edit = contactos[indexPath.row].direccion
+        posicion_elemento_edit = indexPath.row
         
         performSegue(withIdentifier: "editarContacto", sender: nil)
     }
@@ -177,7 +191,10 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource
         {
             let objEditar = segue.destination as! EditarContactoViewController
             
-            //objEditar.nombre_recibido =
+            objEditar.nombre_recibido = nombre_edit
+            objEditar.telefono_recibido = telefono_edit
+            objEditar.direccion_recibida = direccion_edit
+            objEditar.posicion_recibida = posicion_elemento_edit
         }
     }
     

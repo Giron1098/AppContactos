@@ -109,8 +109,8 @@
                                     </button>
                                 </subviews>
                             </stackView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="login" translatesAutoresizingMaskIntoConstraints="NO" id="9Wt-Li-gS8">
-                                <rect key="frame" x="87" y="153" width="240" height="128"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="login" translatesAutoresizingMaskIntoConstraints="NO" id="9Wt-Li-gS8">
+                                <rect key="frame" x="147" y="163" width="120" height="120"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
@@ -125,8 +125,15 @@
                             <constraint firstItem="u67-m0-ZXW" firstAttribute="trailing" secondItem="jl5-B5-M8c" secondAttribute="trailing" constant="20" id="Yqc-fI-oBE"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Editar contacto" id="PiZ-ZE-Xs0"/>
+                    <navigationItem key="navigationItem" title="Editar contacto" id="PiZ-ZE-Xs0">
+                        <barButtonItem key="rightBarButtonItem" image="camera.fill" catalog="system" id="X3P-rb-ig1">
+                            <connections>
+                                <action selector="BTN_AbrirCamara:" destination="qfq-Rq-QSg" id="qnk-hT-xhA"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="IV_Imagen_Perfil" destination="9Wt-Li-gS8" id="2Zq-Gc-g9z"/>
                         <outlet property="TF_Direccion" destination="cB7-pU-hdh" id="OZu-1K-jFA"/>
                         <outlet property="TF_Nombre" destination="wXc-Au-NeV" id="oLw-wB-3Qq"/>
                         <outlet property="TF_Telefono" destination="acA-VQ-2PF" id="I6W-s1-cMJ"/>
@@ -156,6 +163,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="camera.fill" catalog="system" width="128" height="94"/>
         <image name="login" width="512" height="512"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <systemColor name="systemBackgroundColor">
